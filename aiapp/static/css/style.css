@@ -175,26 +175,51 @@ textarea {
     display: none;
 }
 
-@media (max-width: 600px) {
+/* Fix mobile layout */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+.gradient-custom {
+    min-height: 100vh;
+    width: 100%;
+}
+
+.chat-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 15px 10px;
+}
+
+.chat-card {
+    width: 100%;
+    max-width: 750px;
+    min-width: 0;
+}
+
+.chat-form textarea {
+    width: 100%;
+    max-width: 100%;
+}
+
+@media (max-width: 500px) {
     .chat-container {
-        width: 100%;
-        padding: 10px;
+        align-items: flex-start;
     }
 
     .chat-card {
-        width: 100%;
-        min-height: 90vh;
+        padding: 15px;
     }
 
     #chat2 .chat-messages {
-        height: 60vh;
-    }
-
-    .chat-form {
-        flex-direction: column;
-    }
-
-    .chat-form button {
-        width: 100%;
+        height: 400px;
+        max-width: 100%;
     }
 }
