@@ -1,0 +1,14 @@
+aienv/
+venv/
+.venv/
+
+__pycache__/
+*.py[cod]
+
+db.sqlite3
+staticfiles/
+
+.env
+
+.vscode/
+.idea/
