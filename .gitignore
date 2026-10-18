@@ -1,3 +1,5 @@
+.env
+
 aienv/
 venv/
 .venv/

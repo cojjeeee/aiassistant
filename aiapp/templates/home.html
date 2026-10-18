@@ -1,8 +1,69 @@
+
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}AI Assistant{% endblock %}
 
 {% block content %}
-    <h1>AI Assistant</h1>
-    <p>Welcome to your AI Assistant!</p>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div id="offline-message" class="offline-message">
+    You are offlinebot! Please check your internet connectionbot!
+</div>
+
+
+<section class="gradient-custom">
+    <div class="chat-container">
+        <div class="chat-card mask-custom" id="chat2">
+
+            <div class="chat-header">
+                <h1>Gabbot</h1>
+                <p>Your chatbot</p>
+            </div>
+
+            <div class="chat-messages">
+
+                <div class="message ai-message">
+                    <div class="message-name">Gemini</div>
+                    <div class="message-bubble">
+                        Hello! I'm your AI assistant. What would you like to ask?
+                    </div>
+                </div>
+
+                {% if request.method == 'POST' %}
+                    {% if request.POST.prompt %}
+                        <div class="message user-message">
+                            <div class="message-name">You</div>
+                            <div class="message-bubble">{{ request.POST.prompt }}</div>
+                        </div>
+                    {% endif %}
+
+                    {% if response_text %}
+                        <div class="message ai-message">
+                            <div class="message-name">Gemini</div>
+                            <div class="message-bubble">{{ response_text|linebreaksbr }}</div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+
+            </div>
+
+            <form method="POST" action="{% url 'home' %}" class="chat-form">
+                {% csrf_token %}
+
+                <textarea
+                    name="prompt"
+                    class="form-control"
+                    rows="2"
+                    placeholder="Type your message..."
+                    required
+                ></textarea>
+
+                <button type="submit">Send</button>
+            </form>
+
+        </div>
+    </div>
+</section>
+<script src="{% static 'js/offline.js' %}"></script>
 {% endblock %}
